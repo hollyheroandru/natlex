@@ -27,9 +27,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Long createUser(CreateUserRequest request) throws BadRequestException {
-        boolean userExists = userRepository.findByUsername(request.getUsername()).isPresent();
-
-        if(userExists) {
+        if(userRepository.findByUsername(request.getUsername()).isPresent()) {
             throw new BadRequestException("Username already taken");
         }
 
